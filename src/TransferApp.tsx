@@ -393,9 +393,10 @@ function TransferAppContent() {
   ///// Plot Button /////
   const [plotCount, setPlotCount] = useState(0);
   const [porkCalculating, setPorkCalculating] = useState(false);
+  const [porkProgress, setPorkProgress] = useState(0.0);
 
   function handlePlotButtonPress() {
-    
+    console.log(porkProgress)
     // ensure there are no invalid orbit inputs
     let invalidFlag = isInvalidOrbitInput(startOrbitControlsState);
     invalidFlag = isInvalidOrbitInput(endOrbitControlsState) ? true : invalidFlag;
@@ -477,6 +478,8 @@ function TransferAppContent() {
                     ⇩ Plot It!
                     {porkCalculating &&
                     <CircularProgress
+                      variant="determinate"
+                      value={porkProgress}
                       size={24}
                       sx={{
                         position: 'relative',
@@ -494,6 +497,7 @@ function TransferAppContent() {
                 plotCount={plotCount}
                 setTransfer={setTransfer}
                 setCalculating={setPorkCalculating}
+                setPorkProgress={setPorkProgress}
                 setPlotCount={setPlotCount}
               />
             </Paper>
